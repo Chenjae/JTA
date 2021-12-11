@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Spring Boot</title>
+		<link rel="stylesheet" th:href="@{/bootstrap-4.6.0-dist/css/bootstrap.min.css}"/>
+		<script th:src="@{/jquery/jquery-3.5.1.min.js}"></script>
+		<script th:src="@{/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js}"></script>
+	</head>
+		
+	<body>
+		<div class="card m-2">
+			<div class="card-header">
+				DataBase1 계좌 내역
+			</div>
+			<div class="card-body">
+				<table style="width:auto" class="table table-sm table-bordered">
+					<tr>
+						<th style="width:50px">번호</th>
+						<th style="width:100px">소유주</th>
+						<th style="width:200px">잔고</th>
+					</tr>						
+					<tr th:each="account : ${accounts1}">
+						<td>[[${account.ano}]]</td>
+						<td>[[${account.owner}]]</td>
+						<td style="text-align:right;">[[${account.balance}]]</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="card m-2">
+			<div class="card-header">
+				DataBase2 계좌 내역
+			</div>
+			<div class="card-body">
+				<table style="width:auto" class="table table-sm table-bordered">
+					<tr>
+						<th style="width:50px">번호</th>
+						<th style="width:100px">소유주</th>
+						<th style="width:200px">잔고</th>
+					</tr>						
+					<tr th:each="account : ${accounts2}">
+						<td>[[${account.ano}]]</td>
+						<td>[[${account.owner}]]</td>
+						<td style="text-align:right;">[[${account.balance}]]</td>
+					</tr>
+				</table>
+			</div>
+		</div>		
+				
+		<div class="card m-2">
+			<div class="card-header">
+				계좌 이체(분산 트랜잭션)
+			</div>
+			<div class="card-body">
+				<form id="accountTransferForm" method="post" action="accountTransfer">
+					<table style="width:auto" class="table table-sm table-bordered">
+						<tr>
+							<th style="width:150px">출금 계좌</th>
+							<td><input id="fromAccount" type="text" name="fromAno" value="1"/></td>
+						</tr>
+						<tr>
+							<th>입금 계좌</th>
+							<td><input id="toAccount" type="text" name="toAno" value="2"/></td>
+						</tr>
+						<tr>
+							<th>이체 금액</th>
+							<td><input id="amount" type="text" name="amount" value="10000"/></td>
+						</tr>
+					</table>
+					<input class="btn btn-info" type="submit" value="이체하기"/>						
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
